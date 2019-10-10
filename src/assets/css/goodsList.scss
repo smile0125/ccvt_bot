@@ -1,0 +1,49 @@
+#goodsList {
+  .goods-left-img{
+    width: 6rem;
+    height: 6rem;
+  }
+  .section_price{
+    margin-top: 5.5px;
+    .int{
+      font-size: 18px!important;
+      font-weight: 700!important;
+    }
+    .origin_price{
+      margin-left: 0.5rem;
+      text-decoration: line-through;
+      color: #999;
+    }
+  }
+  .goodsList-price-name {
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
+    white-space: pre-wrap;
+    .mod_tag {
+      display: inline-block;
+      margin-right: 5px;
+      font-style: normal;
+      color: #fff;
+      background: #e93b3d;
+      border-radius: 10px;
+      padding: 0 0.5rem;
+      font-size: 12px;
+    }
+
+    .price,.int {
+      display: inline-block;
+      font-size: 16px;
+      font-weight: bold;
+      padding: 0;
+      line-height: 1;
+      color: #e93b3d;
+      margin: 5.5px 0 5.5px 0;
+    }
+  }
+
+}

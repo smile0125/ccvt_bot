@@ -1,0 +1,36 @@
+@import "mixin.scss";
+#addressList {
+  .goods-info-panel {
+    min-height: 100vh;
+    padding-bottom: 3rem;
+  }
+
+  .addAddressBtnBox {
+    height: 3rem;
+    background: #e93b3d;
+    text-align: center;
+    line-height: 3rem;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+  }
+
+  .addAddressBtn {
+    color: #ffffff;
+  }
+
+  .address_item_header{
+    @include flex(center, space-between)
+  }
+  .mod_tag{
+    display: inline-block;
+    margin-right: 5px;
+    font-style: normal;
+    color: #fff;
+    background: #e93b3d;
+    border-radius: 10px;
+    padding: 0 0.5rem;
+    font-size: 12px;
+  }
+}

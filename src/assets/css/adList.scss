@@ -1,0 +1,15 @@
+@mixin flex($justify-content) {
+    display: flex;
+    align-items: center;
+    justify-content: $justify-content;
+}
+
+#adListUi {
+    .adListUi_header {
+        @include flex(space-between);
+
+        p {
+            @include flex('');
+        }
+    }
+}

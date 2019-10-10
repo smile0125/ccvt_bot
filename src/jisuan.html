@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function foo(count) {
+        this.a = count;
+    }
+    var obj1 = { foo: foo };
+    var obj2 = {};
+    obj1.foo(2);
+    console.log(obj1.a);//2
+
+    obj1.foo.call(obj2,3);
+    console.log(obj2.a);//3
+
+    var bar = new obj1.foo(4);
+    console.log(obj1.a);//2
+    console.log(bar.a);//4
+
+    console.log('======================');
+    async function async1() {
+        console.log('async1 start');//1
+        await async2();
+        console.log('async1 end');//6
+    }
+    async function async2() {
+        console.log('async2');//2
+    }
+
+    async1();
+
+    console.log('script start');//3
+
+    setTimeout(() => {
+        console.log('setTimeOut')//8
+    },0);
+
+    new Promise(function (resolve, reject) {
+        console.log('promise1');//4
+        resolve();
+    }).then(() => {
+        console.log('promise2');//7
+    });
+
+    console.log('script end');//5
+
+</script>
+</body>
+</html>

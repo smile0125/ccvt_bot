@@ -1,0 +1,85 @@
+$font-size:0.8rem;
+
+#successInvite {
+    width: 100%;
+    background: #1f2041;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    color: #ffffff;
+    a,
+    p,
+    span {
+        color: #ffffff;
+    }
+
+    .invite_header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+
+        p {
+            margin: 0;
+            font-size: $font-size;
+        }
+    }
+
+    .invite_footer_box {
+        border-top: 1px dashed #6f708c;
+        padding: 0.5rem 0;
+
+        p {
+            font-size: $font-size;
+            margin: 0;
+        }
+    }
+
+    .invite_link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        span {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        svg {
+            width: 1rem;
+            margin-left: 0.2rem;
+            height: 1rem;
+        }
+    }
+
+    .invite_tips {
+        border-top: 1px dashed #6f708c;
+        padding: 0.5rem 0;
+
+        p {
+            font-size: $font-size - 0.2rem;
+            color: #b4b5e4;
+            margin: 0;
+        }
+    }
+}
+
+.invite_recode {
+    .weui-cell {
+        font-size: $font-size
+    }
+}
+
+.shar_img_box {
+    position: fixed;
+    z-index: 999;
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}

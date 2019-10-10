@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import Page from '../../assets/js/page.jsx';
 import { Form, FormCell, CellHeader, Label, CellBody, Input, Button } from 'react-weui';
-import { GetCookie } from '../../assets/js/common.jsx';
+import { GetCookie, SetCookie } from '../../assets/js/common.jsx';
 import { ModifyPoolSet } from '../../http/http.jsx';
 import Loading from '../../assets/js/loading.jsx';
 import TopTip from '../../assets/js/topTops.jsx';
 import { withRouter,Link } from 'react-router-dom';
 
-class EditPoolName extends Component {
+class EditWeChat extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
-            group_name: '',
+            poolInfo: '',
+            manager_wechat_id: '',
             loadingShow: false,
             showTopTips: false,
             toptTipsTimer: null,
@@ -19,17 +20,17 @@ class EditPoolName extends Component {
             text: ''
         }
     }
-    componentWillMount() {
-        if (this.props.location.query) {
-            const group_name = this.props.location.query.group_name;
-            this.setState({ group_name: group_name });
-        }
+    componentDidMount() {
+        const poolInfo = JSON.parse(GetCookie('current_pool'));
+        const { manager_wechat_id } = poolInfo;
+        this.setState({ manager_wechat_id, poolInfo});
     }
     groupNameChange = (e) => {
-        this.setState({ group_name: e.target.value });
-    }
+        this.setState({ manager_wechat_id: e.target.value });
+    };
     modiyGroupName = () => {
-        const params = { token: GetCookie('token'), group_name: this.state.group_name, group_id: GetCookie('group_id') }
+        const { manager_wechat_id, poolInfo } = this.state;
+        const params = { token: GetCookie('token'), manager_wechat_id, group_id: poolInfo.id };
         this.setState({ loadingShow: true });
         ModifyPoolSet(params, res => {
             if (res.errcode == 0) {
@@ -38,7 +39,9 @@ class EditPoolName extends Component {
                     showTopTips: true, text: `修改成功`
                 });
                 this.stopTopTips();
-                this.props.history.push('/poolSet')
+                poolInfo.manager_wechat_id = manager_wechat_id;
+                SetCookie('current_pool', JSON.stringify(poolInfo));
+                this.props.history.push('/manageMent/poolSet')
             }
         }, res => {
             this.setState({
@@ -47,12 +50,12 @@ class EditPoolName extends Component {
             });
             this.stopTopTips();
         })
-    }
+    };
     stopTopTips = () => {
         this.state.toptTipsTimer = setTimeout(() => {
             this.setState({ showTopTips: false });
         }, 2000);
-    }
+    };
 
     componentWillUnmount() {
         clearTimeout(this.state.toptTipsTimer);
@@ -62,8 +65,8 @@ class EditPoolName extends Component {
             <Link to='/' className='hight_color'>个人中心</Link>&nbsp;|&nbsp;
             <Link to='/manageMent' className='hight_color'>矿池管理</Link>&nbsp;|&nbsp;
             <Link to='/manageMent/poolSet' className='hight_color'>矿池设置</Link>&nbsp;|&nbsp;
-            <span>矿池名称</span>
-        </span>
+            <span>矿主微信号</span>
+        </span>;
         return (
             <div>
                 {
@@ -74,14 +77,14 @@ class EditPoolName extends Component {
                         <Loading show={this.state.loadingShow} />
                         : ''
                 }
-                <Page className="article" title="编辑矿池名称" subTitle={bread} >
+                <Page className="article" title="编辑矿主微信号" subTitle={bread} >
                     <Form>
                         <FormCell>
                             <CellHeader>
-                                <Label>矿池名称</Label>
+                                <Label>矿主微信号</Label>
                             </CellHeader>
                             <CellBody>
-                                <Input type="text" placeholder="输入矿池名称" value={this.state.group_name} onChange={this.groupNameChange} />
+                                <Input type="text" placeholder="请输入矿主微信号" value={this.state.manager_wechat_id} onChange={this.groupNameChange} />
                             </CellBody>
                         </FormCell>
                     </Form>
@@ -93,4 +96,4 @@ class EditPoolName extends Component {
         )
     }
 }
-export default withRouter(EditPoolName)
+export default withRouter(EditWeChat)

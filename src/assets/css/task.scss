@@ -1,0 +1,24 @@
+.task_title{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &>div{
+        display: flex;
+        align-items: center;
+    }
+}
+.task_content{
+    margin-bottom: 0.8rem;
+}
+.task_content,
+.task_footer {
+    color: #333 !important;
+    .icon{
+        font-size:1.2rem;
+    }
+}
+
+.task_date {
+    margin-bottom: 1rem;
+    font-size: 12px;
+}

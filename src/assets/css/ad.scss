@@ -1,0 +1,17 @@
+.browser_box{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  &>div{
+    display: flex;
+    align-items: center;
+  }
+  h2{
+    margin: 0!important;
+  }
+  p{
+    color: #888888;
+    font-size: 0.8rem;
+    margin: 0 0.3rem!important;
+  }
+}

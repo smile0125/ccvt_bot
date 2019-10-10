@@ -1,14 +1,15 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
 module.exports = {
     mode: 'development',
-    // entry: path.join(__dirname, './src/index.js'),
     entry: {
-        app: ['babel-polyfill', path.resolve('src/index.js')]
-      },
+        bundle:path.join(__dirname, './src/index.jsx'),
+    },
     output: {
-        path: path.join(__dirname, './build'),
-        filename: 'bundle.js'
+        path: path.join(__dirname, './disk'),
+        filename: 'js/[name]-[hash].js'
     },
     devServer: {
         hot: true,
@@ -18,26 +19,69 @@ module.exports = {
     },
     module: {
         rules: [{
-                test: /\.(css|scss|less)$/,
-                use:['style-loader','css-loader']
+                test: /\.(css|scss)$/,
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader //将css文件单独打包出来
+                    },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            // modules: true,
+                            sourceMap: true
+                        }
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            ident: 'postcss',
+                            sourceMap: true,
+                            plugins: [
+                                require('autoprefixer')({
+                                    browsers: ['last 5 versions']
+                                }),
+                            ]
+                        }
+                    },
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            sourceMap: true
+                        }
+                    }
+                ]
             },
             {
                 test: /\.(js|jsx)$/,
                 exclude: path.join(__dirname, 'node_modules'),
                 use: ['babel-loader'],
+            },
+            {
+                test: /\.(jpg|jpeg|png|gif|svg)$/i,
+                use: [
+                    {
+                        loader: "file-loader",
+                        options: {
+                            name: 'img/[name]-[hash].[ext]',//指定生成的图片名称 ext后缀名
+                        },
+                    }
+                ]
             }
         ]
     },
-    //用于热加载
-    resolve: {
-        alias: {
-            'react-dom': '@hot-loader/react-dom'
-        }
-    },
+
     plugins: [
         new HtmlWebpackPlugin({
             filename: 'index.html',
-            template: path.join(__dirname, './src/index.html')
-        })
+            template: path.join(__dirname, './public/index.html'),
+            minify: { //对当前生成的文件进行压缩
+                removeComments: true, //删除注释
+                collapseWhitespace: true //删除空格
+            }
+        }),
+        new MiniCssExtractPlugin({ //单独打包css
+            filename: 'css/[name]-[hash].css',
+            chunkFilename: 'css/[id]-[hash].css',
+        }),
     ]
-}
+};

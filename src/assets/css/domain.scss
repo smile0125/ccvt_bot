@@ -1,0 +1,21 @@
+#domain{
+    .domain_header{
+        width: 6rem;
+        height: 6rem;
+    }
+    .domain_info{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    p{
+        color: #333333;
+    }
+    .domain_info_p{
+        max-width: 6rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        margin: 2px 0;
+    }
+}

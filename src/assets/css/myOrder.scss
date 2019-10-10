@@ -1,0 +1,29 @@
+.my-order-goods-name{
+  font-size: 14px;
+  color: #333333;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  white-space: pre-wrap;
+}
+.goods-left-img{
+  width: 6rem!important;
+  height: 6rem!important;
+  img{
+    height: 100%;
+  }
+}
+.goodsList-price{
+  text-align: right;
+  color: #999;
+  font-size: 14px;
+  span{
+    color: red;
+  }
+}
+.my-order-top{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

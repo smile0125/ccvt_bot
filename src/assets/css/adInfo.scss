@@ -1,0 +1,173 @@
+@import "mixin.scss";
+
+.adInfoBox {
+  background: #ffffff;
+
+  .adInfoBox_content {
+    border-top: 1px solid #eee;
+
+    .title {
+      color: red;
+    }
+  }
+
+  .adInfoBox_footer {
+    @include flex(center, space-between);
+    border-top: 1px solid #eee;
+    padding: 1rem 0;
+  }
+}
+
+.redEnvelopeBox {
+  position: relative;
+
+  .redEnvelopeBox_header {
+    position: relative;
+    background: #d5553c;
+    height: 15%;
+    border-bottom-left-radius: 100%;
+    border-bottom-right-radius: 100%;
+    text-align: right;
+  }
+
+  .icon_close_box {
+    padding: 1rem 1rem 0 1rem;
+
+    .redEnvelopeBox_info {
+      float: left;
+      color: rgba(245, 225, 177, 1);
+    }
+  }
+
+  .redEnvelopeBox_photo {
+    width: 4rem;
+    height: 4rem;
+    background: #f1eede;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    top: 70%;
+    border-radius: 100%;
+    border: 1px solid gold;
+    overflow: hidden;
+  }
+
+  .redEnvelopeBox_money {
+    padding-top: 4rem;
+    text-align: center;
+    padding-bottom: 2rem;
+  }
+
+  .redEnvelopeBox_item_title {
+    @include flex(center, space-between);
+
+    .redEnvelopeBox_num {
+      font-weight: bold;
+    }
+  }
+}
+
+.myRedEnvelopeHome_content {
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: 12;
+  position: absolute;
+}
+
+.myRedEnvelopeHome_content.open {
+  transition: all 2s;
+  animation: closeMyRed 0.5s linear;
+}
+
+@keyframes closeMyRed {
+  0% {
+    width: 0%;
+    height: 0%;
+    opacity: 0;
+  }
+  50% {
+    width: 50%;
+    height: 50%;
+    opacity: 0.5;
+  }
+  100% {
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+  }
+}
+
+
+.myRedEnvelopeHome {
+  position: absolute;
+  width: 75%;
+  height: 65%;
+  background: #d5553c;
+  z-index: 100;
+  left: 50%;
+  top: 45%;
+  transform: translate(-50%, -50%);
+  border-radius: 0.5rem;
+
+  .myRedEnvelopeHome_top {
+    height: 50%;
+    width: 100%;
+    @include flex(center, center);
+    text-align: center;
+
+    .myRedEnvelopeHome_top_box {
+      @include flex(center, center);
+      margin-bottom: 1rem;
+    }
+
+    h2, h3, span,p {
+      color: #f5e1b1;
+    }
+
+    .myRedEnvelopeHome_top_img {
+      width: 1.5rem;
+      height: 1.5rem;
+      border: 1px solid gold;
+      border-radius: 0.5rem;
+      overflow: hidden;
+    }
+  }
+
+  .myRedEnvelopeHome_middle {
+    width: 100%;
+    height: 30%;
+    background: #d5553c;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    border-bottom-left-radius: 100%;
+    border-bottom-right-radius: 100%;
+    box-shadow: 0 6px 5px rgba(125, 14, 14, 0.1);
+  }
+
+  .myRedEnvelopeHome_bottom {
+    text-align: center;
+    padding-top: 15%;
+
+    span {
+      color: rgba(245, 225, 177, 1);
+    }
+  }
+
+  .myRedEnvelopeHome_footer {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    top: 106%;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 100%;
+    line-height: 2rem;
+    text-align: center;
+    border: 2px solid #bf9735;
+
+    span {
+      color: #bf9735;
+    }
+  }
+}

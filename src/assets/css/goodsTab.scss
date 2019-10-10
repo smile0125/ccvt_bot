@@ -1,0 +1,32 @@
+.tab-content {
+  padding-bottom: 51px;
+}
+
+.tab {
+  z-index: 999;
+  font-size: 15px;
+  line-height: 50px;
+  background: #ffffff;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  border-top: 1px solid #eeeeee;
+  box-shadow: 0 0 1px rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .tabItemNav{
+    display: inline-block;
+    //width: 50%;
+    flex: 1;
+    text-align: center;
+    &:nth-child(2){
+      border-left: 1px solid #eeeeee;
+      border-right: 1px solid #eeeeee;
+    }
+    &.active{
+      background: #e93b3d;
+      color: #fff;
+    }
+  }
+}
